@@ -14,7 +14,7 @@ buildScript {
     mavenCentral()
   }
   dependencies {
-    classpath "$group$:$name;format="norm"$:0.1"
+    classpath "$package$:$name;format="norm"$:0.1"
   }
 }
 
