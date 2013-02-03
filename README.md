@@ -17,17 +17,28 @@ Usage
 Properties Description
 ----------------------
 
-idePlugin
+`idePlugin`
+
 : The gradle IDE plugin used to develop the project. Defaults to 'eclipse', accepts 'idea' too.
-pluginDescription
+
+`pluginDescription`
+
 : The description of your plugin. It will be used on the pom descriptor and your README file. Defaults to `My first plugin`
-name
+
+`name`
+
 : The name of your plugin. It will be used on the project descriptor, plugin class, friendly plugin name and README file. Defaults to `Plugin Name`
-package
+
+`package`
+
 : The main package of your plugin. It will be used as your project group on pom descriptor, README file, plugin class and friendly plugin name files. Defaults to `com.github.username`
-developerName
+
+`developerName`
+
 : That's your name! It will appear at your pom descriptor, License and README files. Defaults to `Developer Name`
-githubUsername
+
+`githubUsername`
+
 : That's your GitHub username. Used inside of pom descriptor. It will be used to generate your project links and identify you. Defaults to `developer`
 
 
