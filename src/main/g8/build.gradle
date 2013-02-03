@@ -3,7 +3,7 @@ apply plugin: "maven"
 apply plugin: "signing"
 apply plugin: "$idePlugin$"
 
-group = "$group$"
+group = "$package$"
 archivesBaseName="$name;format="normalize"$"
 version="0.1"
 
