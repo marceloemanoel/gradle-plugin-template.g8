@@ -25,7 +25,9 @@ repositories {
 
 dependencies {
     compile gradleApi()
-    groovy localGroovy()
+    groovy localGroovy() 
+    
+    test 'junit:junit:4.11'
 }
 
 task groovydocJar(type: Jar, dependsOn: groovydoc) {
