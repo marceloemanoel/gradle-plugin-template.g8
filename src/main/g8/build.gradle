@@ -1,0 +1,85 @@
+apply plugin: "groovy"
+apply plugin: "maven"
+apply plugin: "signing"
+apply plugin: "$idePlugin$"
+
+group = "$group$"
+archivesBaseName="$name;format="normalize"$"
+version="0.1"
+
+if(!hasProperty("sonatypeUsername")){
+    sonatypeUsername = ""
+}
+
+if(!hasProperty("sonatypePassword")){
+    sonatypePassword = ""
+}
+
+signing {
+    sign configurations.archives
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile gradleApi()
+    groovy localGroovy()
+}
+
+task groovydocJar(type: Jar, dependsOn: groovydoc) {
+    classifier = 'javadoc'
+    from 'build/docs/groovydoc'
+}
+ 
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+ 
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+              authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+ 
+            pom.project {
+               name '$name;format="normalize"$'
+               packaging 'jar'
+               description '$description$'
+               url 'https://github.com/$githubUsername$/$name;format="normalize"$'
+ 
+               scm {
+                   url 'git@github.com:$githubUsername$/$name;format="normalize"$.git'
+                   connection 'scm:git@github.com:$githubUsername$/$name;format="normalize"$.git'
+                   developerConnection 'scm:git@github.com:$githubUsername$/$name;format="normalize"$.git'
+               }
+ 
+               licenses {
+                   license {
+                       name 'The Apache Software License, Version 2.0'
+                       url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                       distribution 'repo'
+                   }
+               }
+ 
+               developers {
+                   developer {
+                       id '$githubUsername$'
+                       name '$developerName$'
+                   }
+               }
+           }
+        }
+    }
+}
+
+artifacts {
+    archives jar
+    archives groovydocJar
+    archives sourcesJar
+}
