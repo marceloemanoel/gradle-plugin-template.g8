@@ -50,7 +50,7 @@ uploadArchives {
             pom.project {
                name '$name;format="normalize"$'
                packaging 'jar'
-               description '$description$'
+               description '$pluginDescription$'
                url 'https://github.com/$githubUsername$/$name;format="normalize"$'
  
                scm {
